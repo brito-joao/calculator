@@ -1,3 +1,61 @@
 body{
     background-color: black;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.container{
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 20%;
+    display: flex;
+    flex-direction: column;
+    gap:1.5vh;
+
+}
+.container p{
+    color:white;
+    font-size: 9vh;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0;
+    margin-right: 1.3vh;
+    
+}
+.container button{
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    font-size: 4vh;
+    color:white;
+    background-color: #505050;
+    font-weight: bolder;
+    border:none;
+    
+}
+.container button:active{
+    background-color: rgba(255, 255, 255, 0.575);
+    
+}
+.container .orange:active {
+    background-color: #ffce74;
+}
+.container .orange{
+    background-color: #ffa500;
+    
+    
+}
+.container .white{
+    background-color: #D4D4D2;
+    color:black;
+}
+.container div{
+    display: flex;
+    gap:1.3vh;
+}
+.container .zero{
+    width: 21.3vh;
+    border-radius: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10%;
 }
