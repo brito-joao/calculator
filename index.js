@@ -3,7 +3,7 @@ var numbers=[];
 
 var expression="";
 
-//to convert button input to usable and modif. data
+//to convert button input to usable and modif. data 
 function button_to_string(button){
     
     expression+=button;
@@ -30,6 +30,9 @@ function button_to_string(button){
     if(button==="÷"){
         stirng_to_array();
     }
+    if(button==="%"){
+        percentage();
+    }
 }
 
 function zero(){
@@ -38,6 +41,17 @@ function zero(){
     p.innerText=0;
 }
 
+
+function negative(){
+    expression=-1*expression;
+    p.innerText=expression;
+}
+function percentage(){
+    let result=parseInt(expression)/100;
+    p.innerText=result
+    numbers=[];
+    expression=result;
+}
 
 //to separate the temporary memory(expression variable) from the whole math expression
 function stirng_to_array(){
@@ -110,24 +124,22 @@ function operate2(){
                     
     
                 }else{
-                    if(a===(numbers.length-1)/2&& numbers.length===7){
-                        console.log("hello world",numbers,numbers[a]);
-                        numbers.splice(numbers[a+1],1);
-                        numbers.splice(numbers[a+2],1);
-                        numbers[a-1]=res.toString();
-                        console.log("ready to filter -1 ",numbers,numbers[a-1]);
-                    }else{
-
-                        console.log("ready to filter -1 ",numbers,numbers[a]);
-                        numbers.splice(numbers[a-1],1);  
+                    //to remove all items untill the choosen operator,then add the correct values back
+                    const temporaryArray=[];
+                    for(let c=0;c<=a+1;c++){
+                        let addToNewArrayNum=numbers.shift();
+                        temporaryArray.push(addToNewArrayNum);
+                        console.log("temp array",temporaryArray);
                         
-                        console.log("ready to filter -1 ",numbers,numbers[a-1]);
-                        //numbers.splice(numbers[a],1);
-                        numbers.splice(numbers[a],1);
-                        
-                        numbers[a-1]=res.toString();
-                        console.log("ready to filter ",numbers);
                     }
+                    temporaryArray.pop();
+                    temporaryArray.pop();
+                    temporaryArray.pop();
+
+                    temporaryArray.push(res.toString());
+                    console.log(temporaryArray);
+                    numbers.unshift.apply(numbers, temporaryArray);
+                    console.log(numbers);
                         
                 }
                 
@@ -174,6 +186,6 @@ function calculate(){
     result=res;
     p.innerText=result;
     numbers=[];
-    expression=res;
+    expression="";
     p.style="font-size:9vh";
 }
