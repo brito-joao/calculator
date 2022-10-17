@@ -46,7 +46,7 @@ function backspace(){
     expression.toString();
     let newexp=expression.slice(0,-1);
     expression=newexp;
-    console.log(expression);
+    
     
     
     p.innerText=expression;
@@ -86,18 +86,10 @@ function operate(){
             if(numbers[a]==="-"){
                 res=parseFloat(numbers[a-1])-parseFloat(numbers[a+1]);
             }
-            console.log("ready to filter ",numbers);
+            
             
             numbers[a+1]=res;
             numbers.splice(numbers[a-2],2);
-            
-            
-            
-            console.log("ready to filter ",numbers);
-            
-            
-            
-            console.log("ready to filter ",numbers);
             break;
         }
         
@@ -121,35 +113,25 @@ function operate2(){
                 numbers.shift();
                 numbers.shift();
                 numbers.shift();
-                numbers.unshift(res.toString());
-                
-
+                numbers.unshift(res.toString());  
             }else{
                 if(a+1===numbers.length-1){
                     numbers.pop();
                     numbers.pop();
                     numbers.pop();
                     numbers.push(res.toString());
-                    
-    
                 }else{
                     //to remove all items untill the choosen operator,then add the correct values back
                     const temporaryArray=[];
                     for(let c=0;c<=a+1;c++){
                         let addToNewArrayNum=numbers.shift();
                         temporaryArray.push(addToNewArrayNum);
-                        console.log("temp array",temporaryArray);
-                        
                     }
                     temporaryArray.pop();
                     temporaryArray.pop();
                     temporaryArray.pop();
-
                     temporaryArray.push(res.toString());
-                    console.log(temporaryArray);
-                    numbers.unshift.apply(numbers, temporaryArray);
-                    console.log(numbers);
-                        
+                    numbers.unshift.apply(numbers, temporaryArray);        
                 }
                 
             }
@@ -173,21 +155,19 @@ function calculate(){
             }
         }
     })
-    console.log(`number of operators ${numOperators}, numbers ${numbers}`);
+    
     if(numMultDiv>=1){
-        console.log("there are :",numMultDiv,"mult div");
+        
         for(let b=0;b<numMultDiv;b++){
             operate2();
         }   
     }
-    if(numOperators-numMultDiv>=1){
-        console.log("there are :",numOperators,"mult div");
+    if(numOperators-numMultDiv>=1){ 
         for(let b=0;b<numOperators;b++){
             operate();
         }
     }
     res=operate();
-    console.log("hello world");
     
     
     numbers.push(expression);
