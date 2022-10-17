@@ -41,7 +41,16 @@ function zero(){
     p.innerText=0;
 }
 
-
+function backspace(){
+    
+    expression.toString();
+    let newexp=expression.slice(0,-1);
+    expression=newexp;
+    console.log(expression);
+    
+    
+    p.innerText=expression;
+}
 function negative(){
     expression=-1*expression;
     p.innerText=expression;
@@ -72,10 +81,10 @@ function operate(){
     for (let a=0;a<=numbers.length-1;a++){
         if(numbers[a]==="+" || numbers[a]==="-" ){ 
             if(numbers[a]==="+"){
-                res=parseInt(numbers[a-1])+parseInt(numbers[a+1]);
+                res=parseFloat(numbers[a-1])+parseFloat(numbers[a+1]);
             }
             if(numbers[a]==="-"){
-                res=parseInt(numbers[a-1])-parseInt(numbers[a+1]);
+                res=parseFloat(numbers[a-1])-parseFloat(numbers[a+1]);
             }
             console.log("ready to filter ",numbers);
             
@@ -102,10 +111,10 @@ function operate2(){
     for (let a=0;a<=numbers.length-1;a++){
         if(numbers[a]==="x"||numbers[a]==="÷"){
             if(numbers[a]==="x"){
-              res=parseInt(numbers[a-1])*parseInt(numbers[a+1]);  
+              res=parseFloat(numbers[a-1])*parseFloat(numbers[a+1]);  
             }
             if(numbers[a]==="÷"){
-                res=parseInt(numbers[a-1])/parseInt(numbers[a+1]);  
+                res=parseFloat(numbers[a-1])/parseFloat(numbers[a+1]);  
             }
             
             if(a-1===0){
@@ -179,11 +188,20 @@ function calculate(){
     }
     res=operate();
     console.log("hello world");
-    console.log(res);
+    
     
     numbers.push(expression);
+    res=res.toString();
     
-    result=res;
+    if(res.length>=6){
+        res=parseFloat(res);
+        
+        result=res.toFixed(3);
+    }else{
+        res=parseFloat(res)
+        result=Math.round(res);
+    }
+    
     p.innerText=result;
     numbers=[];
     expression="";
